@@ -1,0 +1,2 @@
+recursive-include tutorandroid/patches *
+recursive-include tutorandroid/templates *

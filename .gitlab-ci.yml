@@ -1,0 +1,9 @@
+variables:
+    TUTOR_PLUGIN: android
+    TUTOR_IMAGES: android
+    TUTOR_PYPI_PACKAGE: tutor-android
+    OPENEDX_RELEASE: lilac
+
+include:
+  - project: 'community/tutor-ci'
+    file: 'plugin-gitlab-ci.yml'
