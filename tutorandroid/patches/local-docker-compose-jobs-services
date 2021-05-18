@@ -1,5 +1,5 @@
 android-job:
   image: {{ ANDROID_DOCKER_IMAGE }}
   volumes:
-    - "../android/:/openedx/config/"
+    - "../plugins/android/apps:/openedx/config/"
     - "../../data/android/:/openedx/data/"
