@@ -26,7 +26,7 @@ RUN yes | /openedx/android-sdk/tools/bin/sdkmanager --sdk_root=${ANDROID_HOME} -
 
 # Install android app repo
 ARG ANDROID_APP_REPOSITORY=https://github.com/edx/edx-app-android
-ARG ANDROID_APP_VERSION=release/2.23.2
+ARG ANDROID_APP_VERSION=release/2.25.1
 RUN git clone $ANDROID_APP_REPOSITORY --branch $ANDROID_APP_VERSION /openedx/edx-app-android
 WORKDIR /openedx/edx-app-android
 
