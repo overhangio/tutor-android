@@ -20,7 +20,11 @@ config = {
     },
 }
 
-hooks = {"build-image": {"android": "{{ ANDROID_DOCKER_IMAGE }}"}, "init": ["lms"]}
+hooks = {
+    "build-image": {"android": "{{ ANDROID_DOCKER_IMAGE }}"},
+    "remote-image": {"android": "{{ ANDROID_DOCKER_IMAGE }}"},
+    "init": ["lms"],
+}
 
 
 command = android_command
