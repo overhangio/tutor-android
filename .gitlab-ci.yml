@@ -3,6 +3,7 @@ variables:
     TUTOR_IMAGES: android
     TUTOR_PYPI_PACKAGE: tutor-android
     OPENEDX_RELEASE: lilac
+    GITHUB_REPO: overhangio/tutor-android
 
 include:
   - project: 'community/tutor-ci'
