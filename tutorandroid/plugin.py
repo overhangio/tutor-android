@@ -3,7 +3,6 @@ import os
 import pkg_resources
 
 from .__about__ import __version__
-from .cli import android as android_command
 
 
 templates = pkg_resources.resource_filename("tutorandroid", "templates")
@@ -13,7 +12,11 @@ config = {
     "add": {"OAUTH2_SECRET": "{{ 24|random_string }}"},
     "defaults": {
         "VERSION": __version__,
+        "APP_HOST": "mobile.{{ LMS_HOST }}",
+        "APP_VERSION": "2.26.1",  # https://github.com/edx/edx-app-android/releases
         "DOCKER_IMAGE": "{{ DOCKER_REGISTRY }}overhangio/openedx-android:{{ ANDROID_VERSION }}",
+        "APP_DOCKER_IMAGE": "{{ DOCKER_REGISTRY }}overhangio/openedx-android-app:{{ ANDROID_VERSION }}",
+        "ENABLE_RELEASE_MODE": False,
         "RELEASE_STORE_PASSWORD": "android store password",
         "RELEASE_KEY_PASSWORD": "android release key password",
         "RELEASE_KEY_ALIAS": "android release key alias",
@@ -21,13 +24,13 @@ config = {
 }
 
 hooks = {
-    "build-image": {"android": "{{ ANDROID_DOCKER_IMAGE }}"},
+    "build-image": {
+        "android": "{{ ANDROID_DOCKER_IMAGE }}",
+        "android-app": "{{ ANDROID_APP_DOCKER_IMAGE }}",
+    },
     "remote-image": {"android": "{{ ANDROID_DOCKER_IMAGE }}"},
     "init": ["lms"],
 }
-
-
-command = android_command
 
 
 def patches():

@@ -13,15 +13,13 @@ Installation
 Usage
 -----
 
-Enable the plugin::
+Enable the plugin and start the platform::
 
     tutor plugins enable android
+    tutor local quickstart
 
-To build the application in debug mode, run::
 
-    tutor android build debug
-
-The ``.apk`` file will then be available in ``$(tutor config printroot)/data/android``. Transfer it to an Android phone to install the application. You should be able to sign in and view available courses.
+The ``.apk`` file will then be available for download at http(s)://mobile.LMS_HOST/app.apk. When running locally, this will be: http://mobile.local.overhang.io/app.apk. You can forward this address to your students for download.
 
 Building a custom Android app
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -38,21 +36,22 @@ Releasing an Android app
 
 **Note**: this is an untested feature.
 
-Releasing an Android app on the Play Store requires to build the app in release mode. To do so, edit the ``$TUTOR_ROOT/config.yml`` configuration file and define the following variables::
+Releasing an Android app on the Play Store requires to build the app in release mode. To do so, modify the following Tutor settings::
 
-    ANDROID_RELEASE_STORE_PASSWORD
-    ANDROID_RELEASE_KEY_PASSWORD
-    ANDROID_RELEASE_KEY_ALIAS
+    tutor config save \
+      --set ANDROID_RELEASE_STORE_PASSWORD=yourstorepassword \
+      --set ANDROID_RELEASE_KEY_PASSWORD=yourreleasekeypassword \
+      --set ANDROID_RELEASE_KEY_ALIAS=yourreleasekeyalias \
+      --set ANDROID_ENABLE_RELEASE_MODE=true
 
-Then, place your keystore file in ``$(tutor config printroot)/env/plugins/android/apps/app.keystore``. Finally, build the application with::
+Then, place your keystore file in ``$(tutor config printroot)/env/plugins/android/build/app/config/app.keystore``. Finally, rebuild the image by starting the "android-app" container::
 
-    tutor android build release
+    tutor local start -d android-app
 
 Customising the Android app
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Customising the application, such as the logo or the background image, is currently not supported. If you are interested by this feature, please tell us about it in the Tutor `discussion forums <https://discuss.overhang.io>`_.
-
 
 License
 -------

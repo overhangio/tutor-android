@@ -1,0 +1,6 @@
+# Android app
+android-app:
+    image: {{ ANDROID_APP_DOCKER_IMAGE }}
+    build:
+        context: ../plugins/android/build/app/
+    restart: unless-stopped

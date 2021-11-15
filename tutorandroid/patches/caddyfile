@@ -1,0 +1,3 @@
+{{ ANDROID_APP_HOST }}{$default_site_port} {
+    import proxy "android-app:8000"
+}
