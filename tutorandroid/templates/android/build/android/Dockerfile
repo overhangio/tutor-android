@@ -23,7 +23,7 @@ RUN wget https://dl.google.com/android/repository/commandlinetools-linux-${ANDRO
 # Accept licenses
 # https://developer.android.com/studio/command-line/sdkmanager
 # Check target version: https://github.com/edx/edx-app-android/blob/master/constants.gradle
-ARG ANDROID_API_LEVEL=29
+ARG ANDROID_API_LEVEL=30
 RUN yes | /app/android-sdk/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOME} --install "platforms;android-$ANDROID_API_LEVEL" 1> /dev/null
 
 # Install android app repo
