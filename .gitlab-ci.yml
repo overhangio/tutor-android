@@ -2,7 +2,7 @@ variables:
     TUTOR_PLUGIN: android
     TUTOR_IMAGES: android
     TUTOR_PYPI_PACKAGE: tutor-android
-    OPENEDX_RELEASE: maple
+    OPENEDX_RELEASE: nutmeg
     GITHUB_REPO: overhangio/tutor-android
 
 include:
