@@ -44,17 +44,29 @@ tutor_hooks.Filters.IMAGES_BUILD.add_items(
         ),
     ]
 )
-tutor_hooks.Filters.IMAGES_PULL.add_item(
-    (
-        "android",
-        "{{ ANDROID_DOCKER_IMAGE }}",
-    )
+tutor_hooks.Filters.IMAGES_PULL.add_items(
+    [
+        (
+            "android",
+            "{{ ANDROID_DOCKER_IMAGE }}",
+        ),
+        (
+            "android-app",
+            "{{ ANDROID_APP_DOCKER_IMAGE }}",
+        ),
+    ]
 )
-tutor_hooks.Filters.IMAGES_PUSH.add_item(
-    (
-        "android",
-        "{{ ANDROID_DOCKER_IMAGE }}",
-    )
+tutor_hooks.Filters.IMAGES_PUSH.add_items(
+    [
+        (
+            "android",
+            "{{ ANDROID_DOCKER_IMAGE }}",
+        ),
+        (
+            "android-app",
+            "{{ ANDROID_APP_DOCKER_IMAGE }}",
+        ),
+    ]
 )
 
 ####### Boilerplate code
