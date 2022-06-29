@@ -6,7 +6,6 @@ from tutor import hooks as tutor_hooks
 
 from .__about__ import __version__
 
-
 config = {
     "unique": {"OAUTH2_SECRET": "{{ 24|random_string }}"},
     "defaults": {
@@ -44,6 +43,29 @@ tutor_hooks.Filters.IMAGES_BUILD.add_items(
         ),
     ]
 )
+
+
+@tutor_hooks.Filters.IMAGES_PULL.add()
+@tutor_hooks.Filters.IMAGES_PUSH.add()
+def _add_remote_android_app_image_iff_customized(images, user_config):
+    """
+    Register ANDROID-APP image for pushing & pulling if and only if it has
+    been set to something other than the default.
+
+    This is work-around to an upstream issue with ANDROID-APP config. Briefly:
+    User config is baked into ANDROID-APP builds, so Tutor cannot host a generic
+    pre-built ANDROID-APP image. However, individual Tutor users may want/need to
+    build and host their own ANDROID-APP image. So, as a compromise, we tell Tutor
+    to push/pull the ANDROID-APP image if the user has customized it to anything
+    other than the default image URL.
+    """
+    image_tag = user_config["ANDROID_APP_DOCKER_IMAGE"]
+    if not image_tag.startswith("docker.io/overhangio/openedx-android-app:"):
+        # Image has been customized. Add to list for pulling/pushing.
+        images.append(("android-app", image_tag))
+    return images
+
+
 tutor_hooks.Filters.IMAGES_PULL.add_item(
     (
         "android",
