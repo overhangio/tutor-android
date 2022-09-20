@@ -16,7 +16,7 @@ Usage
 Enable the plugin and start the platform::
 
     tutor plugins enable android
-    tutor local quickstart
+    tutor local launch 
 
 
 The ``.apk`` file will then be available for download at http(s)://mobile.LMS_HOST/app.apk. When running locally, this will be: http://mobile.local.overhang.io/app.apk. You can forward this address to your students for download.
