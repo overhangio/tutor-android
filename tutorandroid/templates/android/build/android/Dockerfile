@@ -16,7 +16,7 @@ ENV ANDROID_SDK_PATH /app/android-sdk
 ENV ANDROID_HOME /app/android-sdk
 RUN mkdir ${ANDROID_HOME}
 WORKDIR /app/android-sdk
-RUN wget https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_SDK_VERSION}_latest.zip && \
+RUN wget --quiet https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_SDK_VERSION}_latest.zip && \
     unzip commandlinetools-linux-${ANDROID_SDK_VERSION}_latest.zip && \
     rm commandlinetools-linux-${ANDROID_SDK_VERSION}_latest.zip
 
@@ -27,7 +27,7 @@ ARG ANDROID_API_LEVEL=30
 RUN yes | /app/android-sdk/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOME} --install "platforms;android-$ANDROID_API_LEVEL" 1> /dev/null
 
 # Install android app repo
-ARG ANDROID_APP_REPOSITORY=https://github.com/edx/edx-app-android
+ARG ANDROID_APP_REPOSITORY=https://github.com/openedx/edx-app-android
 ARG ANDROID_APP_VERSION=release/{{ ANDROID_APP_VERSION }}
 RUN git clone $ANDROID_APP_REPOSITORY --branch $ANDROID_APP_VERSION /app/edx-app-android
 WORKDIR /app/edx-app-android
