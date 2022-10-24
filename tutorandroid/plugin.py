@@ -11,7 +11,9 @@ config = {
     "defaults": {
         "VERSION": __version__,
         "APP_HOST": "mobile.{{ LMS_HOST }}",
-        "APP_VERSION": "3.0.2",  # https://github.com/edx/edx-app-android/releases
+        # Unfortunately 3.2.2 is not functional: https://github.com/openedx/build-test-release-wg/issues/211#issuecomment-1344311500
+        # "APP_VERSION": "3.2.2",  # https://github.com/openedx/edx-app-android/releases
+        "APP_VERSION": "3.0.2",
         "DOCKER_IMAGE": "{{ DOCKER_REGISTRY }}overhangio/openedx-android:{{ ANDROID_VERSION }}",
         "APP_DOCKER_IMAGE": "{{ DOCKER_REGISTRY }}overhangio/openedx-android-app:{{ ANDROID_VERSION }}",
         "ENABLE_RELEASE_MODE": False,
@@ -21,12 +23,22 @@ config = {
     },
 }
 
-tutor_hooks.Filters.COMMANDS_INIT.add_item(
-    (
+with open(
+    os.path.join(
+        pkg_resources.resource_filename("tutorandroid", "templates"),
+        "android",
+        "tasks",
         "lms",
-        ("android", "tasks", "lms", "init"),
+        "init",
+    ),
+    encoding="utf8",
+) as fi:
+    tutor_hooks.Filters.CLI_DO_INIT_TASKS.add_item(
+        (
+            "lms",
+            fi.read(),
+        )
     )
-)
 tutor_hooks.Filters.IMAGES_BUILD.add_items(
     [
         (
