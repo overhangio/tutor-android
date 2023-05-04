@@ -8,7 +8,7 @@ Installation
 
 ::
 
-    pip install tutor-android
+    tutor plugins install android
 
 Usage
 -----
@@ -30,6 +30,11 @@ The Android app is built from the `official edx-app-android repository <https://
         --build-arg ANDROID_APP_REPOSITORY=https://github.com/mycustomfork/edx-app-android \
         --build-arg ANDROID_APP_VERSION=master \
         android
+
+Alternatively, you can build an image from a local checked-out fork of edx-app-android::
+
+    tutor mounts add /path/to/edx-app-android
+    tutor local launch
 
 Releasing an Android app
 ~~~~~~~~~~~~~~~~~~~~~~~~
