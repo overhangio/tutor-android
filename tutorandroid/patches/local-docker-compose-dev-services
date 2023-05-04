@@ -1,0 +1,3 @@
+android-app:
+    ports:
+        - "8321:8000"

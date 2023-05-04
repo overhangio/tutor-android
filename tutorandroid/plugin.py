@@ -1,5 +1,9 @@
+from __future__ import annotations
+
 from glob import glob
 import os
+import typing as t
+
 import pkg_resources
 
 from tutor import hooks as tutor_hooks
@@ -11,9 +15,9 @@ config = {
     "defaults": {
         "VERSION": __version__,
         "APP_HOST": "mobile.{{ LMS_HOST }}",
-        # Unfortunately 3.2.2 is not functional: https://github.com/openedx/build-test-release-wg/issues/211#issuecomment-1344311500
-        # "APP_VERSION": "3.2.2",  # https://github.com/openedx/edx-app-android/releases
-        "APP_VERSION": "3.0.2",
+        # Version 4.0.0 is not working:
+        # https://github.com/overhangio/tutor-android/pull/6#issuecomment-1541510489
+        "APP_VERSION": "3.1.4",
         "DOCKER_IMAGE": "{{ DOCKER_REGISTRY }}overhangio/openedx-android:{{ ANDROID_VERSION }}",
         "APP_DOCKER_IMAGE": "{{ DOCKER_REGISTRY }}overhangio/openedx-android-app:{{ ANDROID_VERSION }}",
         "ENABLE_RELEASE_MODE": False,
@@ -43,13 +47,13 @@ tutor_hooks.Filters.IMAGES_BUILD.add_items(
     [
         (
             "android",
-            ("plugins", "android", "build", "android"),
+            os.path.join("plugins", "android", "build"),
             "{{ ANDROID_DOCKER_IMAGE }}",
-            (),
+            ("--target=common",),
         ),
         (
             "android-app",
-            ("plugins", "android", "build", "app"),
+            os.path.join("plugins", "android", "build"),
             "{{ ANDROID_APP_DOCKER_IMAGE }}",
             (),
         ),
@@ -90,6 +94,34 @@ tutor_hooks.Filters.IMAGES_PUSH.add_item(
         "{{ ANDROID_DOCKER_IMAGE }}",
     )
 )
+
+
+# Build app image on launch
+tutor_hooks.Filters.IMAGES_BUILD_REQUIRED.add_item("android-app")
+
+
+# Mount custom edx-app-android repo at build time
+@tutor_hooks.Filters.IMAGES_BUILD_MOUNTS.add()
+def _build_custom_android_app(
+    mounts: list[tuple[str, str]], host_path: str
+) -> list[tuple[str, str]]:
+    path_basename = os.path.basename(host_path)
+    if path_basename == "edx-app-android":
+        # Bind-mount repo at build-time
+        mounts.append(("android", "edx-app-android"))
+    return mounts
+
+
+@tutor_hooks.Filters.APP_PUBLIC_HOSTS.add()
+def _print_android_app_public_hosts(
+    hostnames: list[str], context_name: t.Literal["local", "dev"]
+) -> list[str]:
+    if context_name == "local":
+        hostnames.append("{{ ANDROID_APP_HOST }}")
+    else:
+        hostnames.append("{{ ANDROID_APP_HOST }}:8321")
+    return hostnames
+
 
 ####### Boilerplate code
 # Add the "templates" folder as a template root
