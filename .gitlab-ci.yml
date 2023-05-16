@@ -4,6 +4,7 @@ variables:
     TUTOR_PYPI_PACKAGE: tutor-android
     OPENEDX_RELEASE: olive
     GITHUB_REPO: overhangio/tutor-android
+    IMAGES_BUILD_PLATFORM: "linux/amd64"
 
 include:
   - project: 'community/tutor-ci'
