@@ -8,7 +8,7 @@ Installation
 
 ::
 
-    pip install tutor-android
+    tutor plugins install android
 
 Usage
 -----
