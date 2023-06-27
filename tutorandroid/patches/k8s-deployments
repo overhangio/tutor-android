@@ -20,7 +20,6 @@ spec:
       containers:
         - name: android-app
           image: {{ ANDROID_APP_DOCKER_IMAGE }}
-          imagePullPolicy: Always
           ports:
             - containerPort: 8000
           securityContext:
