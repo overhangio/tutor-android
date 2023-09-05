@@ -35,6 +35,12 @@ Alternatively, you can build an image from a local checked-out fork of edx-app-a
     tutor mounts add /path/to/edx-app-android
     tutor local launch
 
+Making courses visible in app
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+By default, courses are not visible in the mobile app. To make them available, go to Studio → YOUR COURSE → Settings → Advanced Settings and set ``Mobile Course Available`` to true.
+
+
 Releasing an Android app
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
