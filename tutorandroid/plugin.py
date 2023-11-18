@@ -133,7 +133,6 @@ def _print_android_app_public_hosts(
     return hostnames
 
 
-####### Boilerplate code
 # Add the "templates" folder as a template root
 tutor_hooks.Filters.ENV_TEMPLATE_ROOTS.add_item(
     pkg_resources.resource_filename("tutorandroid", "templates")
