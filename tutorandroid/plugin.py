@@ -1,13 +1,13 @@
 from __future__ import annotations
 
-from glob import glob
 import os
 import typing as t
+from glob import glob
 
 import pkg_resources
-
 from tutor import hooks as tutor_hooks
 from tutor.__about__ import __version_suffix__
+from tutor.types import Config, get_typed
 
 from .__about__ import __version__
 
@@ -15,8 +15,8 @@ from .__about__ import __version__
 if __version_suffix__:
     __version__ += "-" + __version_suffix__
 
-config = {
-    "unique": {"OAUTH2_SECRET": "{{ 24|random_string }}"},
+
+config: t.Dict[str, t.Dict[str, t.Any]] = {
     "defaults": {
         "VERSION": __version__,
         "APP_HOST": "mobile.{{ LMS_HOST }}",
@@ -29,6 +29,9 @@ config = {
         "RELEASE_STORE_PASSWORD": "android store password",
         "RELEASE_KEY_PASSWORD": "android release key password",
         "RELEASE_KEY_ALIAS": "android release key alias",
+    },
+    "unique": {
+        "OAUTH2_SECRET": "{{ 24|random_string }}",
     },
 }
 
@@ -68,7 +71,9 @@ tutor_hooks.Filters.IMAGES_BUILD.add_items(
 
 @tutor_hooks.Filters.IMAGES_PULL.add()
 @tutor_hooks.Filters.IMAGES_PUSH.add()
-def _add_remote_android_app_image_iff_customized(images, user_config):
+def _add_remote_android_app_image_iff_customized(
+    images: list[tuple[str, str]], user_config: Config
+) -> list[tuple[str, str]]:
     """
     Register ANDROID-APP image for pushing & pulling if and only if it has
     been set to something other than the default.
@@ -80,7 +85,7 @@ def _add_remote_android_app_image_iff_customized(images, user_config):
     to push/pull the ANDROID-APP image if the user has customized it to anything
     other than the default image URL.
     """
-    image_tag = user_config["ANDROID_APP_DOCKER_IMAGE"]
+    image_tag = get_typed(user_config, "ANDROID_APP_DOCKER_IMAGE", str, "")
     if not image_tag.startswith("docker.io/overhangio/openedx-android-app:"):
         # Image has been customized. Add to list for pulling/pushing.
         images.append(("android-app", image_tag))
