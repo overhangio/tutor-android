@@ -24,7 +24,7 @@ config: t.Dict[str, t.Dict[str, t.Any]] = {
         # https://github.com/overhangio/tutor-android/pull/6#issuecomment-1541510489
         "APP_VERSION": "3.1.4",
         "DOCKER_IMAGE": "{{ DOCKER_REGISTRY }}overhangio/openedx-android:{{ ANDROID_VERSION }}",
-        "APP_DOCKER_IMAGE": "{{ DOCKER_REGISTRY }}overhangio/openedx-android-app:{{ ANDROID_VERSION }}",
+        "APP_DOCKER_IMAGE": "{{ DOCKER_REGISTRY }}overhangio/openedx-android:{{ ANDROID_VERSION }}",
         "ENABLE_RELEASE_MODE": False,
         "RELEASE_STORE_PASSWORD": "android store password",
         "RELEASE_KEY_PASSWORD": "android release key password",
@@ -59,21 +59,19 @@ tutor_hooks.Filters.IMAGES_BUILD.add_items(
             "{{ ANDROID_DOCKER_IMAGE }}",
             ("--target=common",),
         ),
-        (
-            "android-app",
-            os.path.join("plugins", "android", "build"),
-            "{{ ANDROID_APP_DOCKER_IMAGE }}",
-            (),
-        ),
+        # (
+        #     "android-app",
+        #     os.path.join("plugins", "android", "build"),
+        #     "{{ ANDROID_APP_DOCKER_IMAGE }}",
+        #     (),
+        # ),
     ]
 )
 
 
 @tutor_hooks.Filters.IMAGES_PULL.add()
 @tutor_hooks.Filters.IMAGES_PUSH.add()
-def _add_remote_android_app_image_iff_customized(
-    images: list[tuple[str, str]], user_config: Config
-) -> list[tuple[str, str]]:
+def _add_remote_android_app_image_iff_customized(images, user_config):
     """
     Register ANDROID-APP image for pushing & pulling if and only if it has
     been set to something other than the default.
@@ -85,12 +83,11 @@ def _add_remote_android_app_image_iff_customized(
     to push/pull the ANDROID-APP image if the user has customized it to anything
     other than the default image URL.
     """
-    image_tag = get_typed(user_config, "ANDROID_APP_DOCKER_IMAGE", str, "")
-    if not image_tag.startswith("docker.io/overhangio/openedx-android-app:"):
-        # Image has been customized. Add to list for pulling/pushing.
-        images.append(("android-app", image_tag))
+    image_tag = user_config["ANDROID_APP_DOCKER_IMAGE"]
+    # if not image_tag.startswith("docker.io/overhangio/openedx-android-app:"):
+    #     # Image has been customized. Add to list for pulling/pushing.
+    #     images.append(("android-app", image_tag))
     return images
-
 
 tutor_hooks.Filters.IMAGES_PULL.add_item(
     (
@@ -107,7 +104,7 @@ tutor_hooks.Filters.IMAGES_PUSH.add_item(
 
 
 # Build app image on launch
-tutor_hooks.Filters.IMAGES_BUILD_REQUIRED.add_item("android-app")
+tutor_hooks.Filters.IMAGES_BUILD_REQUIRED.add_item("android")
 
 
 # Mount custom edx-app-android repo at build time
