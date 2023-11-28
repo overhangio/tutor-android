@@ -1,11 +1,11 @@
-FROM docker.io/ubuntu:22.04 AS base
+FROM docker.io/ubuntu:23.10 AS base
 LABEL maintainer="Overhang.IO <contact@overhang.io>"
 
 ENV DEBIAN_FRONTEND=noninteractive
 RUN {% if is_buildkit_enabled() %}--mount=type=cache,target=/var/cache/apt,sharing=locked \
     --mount=type=cache,target=/var/lib/apt,sharing=locked {% endif %}apt update && \
   apt upgrade -y && \
-  apt install -y wget unzip git openjdk-11-jre openjdk-11-jdk
+  apt install -y wget unzip git openjdk-17-jre openjdk-17-jdk
 
 RUN mkdir /app
 
@@ -15,7 +15,7 @@ FROM base AS sdk
 # Install Android SDK
 # Inspired from https://github.com/LiveXP/docker-android-sdk/blob/master/Dockerfile
 # Get sdk version from here: https://developer.android.com/studio#command-tools
-ENV ANDROID_SDK_VERSION 9477386
+ENV ANDROID_SDK_VERSION 10406996
 ENV ANDROID_SDK_PATH /app/android-sdk
 ENV ANDROID_HOME /app/android-sdk
 RUN mkdir ${ANDROID_HOME}
@@ -27,8 +27,8 @@ RUN wget --quiet https://dl.google.com/android/repository/commandlinetools-linux
 # Accept licenses
 # https://developer.android.com/studio/command-line/sdkmanager
 # Check target version: https://github.com/edx/edx-app-android/blob/master/constants.gradle
-ARG ANDROID_API_LEVEL=31
-RUN yes | /app/android-sdk/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOME} --install "platforms;android-$ANDROID_API_LEVEL" 1> /dev/null
+ARG ANDROID_API_LEVEL=33
+RUN yes | /app/android-sdk/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOME} --install "platforms;android-${ANDROID_API_LEVEL}" 1> /dev/null
 
 ###### Checkout code
 FROM base AS code
