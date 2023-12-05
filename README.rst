@@ -1,4 +1,4 @@
-Android application plugin for `Tutor <https://docs.tutor.overhang.io>`__
+Android application plugin for `Tutor <https://docs.tutor.edly.io>`__
 =========================================================================
 
 This is a plugin to easily build an Android mobile application for your `Open edX <https://open.edx.org>`__ instance.
@@ -67,7 +67,7 @@ Customising the application, such as the logo or the background image, is curren
 Troubleshooting
 ---------------
 
-This Tutor plugin is maintained by Régis Behmo from `Overhang.IO <https://overhang.io>`__. Community support is available from the official `Open edX forum <https://discuss.openedx.org>`__. Do you need help with this plugin? See the `troubleshooting <https://docs.tutor.overhang.io/troubleshooting.html>`__ section from the Tutor documentation.
+This Tutor plugin is maintained by Régis Behmo from `Overhang.IO <https://overhang.io>`__. Community support is available from the official `Open edX forum <https://discuss.openedx.org>`__. Do you need help with this plugin? See the `troubleshooting <https://docs.tutor.edly.io/troubleshooting.html>`__ section from the Tutor documentation.
 
 License
 -------
