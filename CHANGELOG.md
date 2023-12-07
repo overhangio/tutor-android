@@ -19,6 +19,13 @@ instructions, because git commits are used to generate release notes:
 
 <!-- scriv-insert-here -->
 
+<a id='changelog-17.0.0'></a>
+## v17.0.0 (2023-12-09)
+
+- 💥 [Feature] Upgrade to Quince (by @muhammadali286).
+    - The nightly branch will now build the master branch of the edx-app-android repository. (by @regisb)
+- [Improvement] Added Typing to code, Makefile and test action to the repository and formatted code with Black and isort. (by @CodeWithEmad)
+
 <a id='changelog-16.0.0'></a>
 ## v16.0.0 (2023-06-14)
 
