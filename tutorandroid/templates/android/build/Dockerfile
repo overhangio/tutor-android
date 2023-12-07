@@ -65,7 +65,7 @@ COPY ./config/gradle.properties ./gradle.properties.tutor
 RUN cat ./gradle.properties.tutor >> ./gradle.properties
 {% endif %}
 
-# uncomment thi line for for release APK. 
+# uncomment this line for for release APK. 
 # RUN sed -i "s/APPLICATION_ID = .*/APPLICATION_ID = \"{{ LMS_HOST|reverse_host|replace("-", "_") }}\"/g" constants.gradle
 RUN ./gradlew assembleProd{{ "Release" if ANDROID_ENABLE_RELEASE_MODE else "Debuggable" }}
 
