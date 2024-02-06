@@ -4,7 +4,7 @@ import os
 import typing as t
 from glob import glob
 
-import pkg_resources
+import importlib_resources
 from tutor import hooks as tutor_hooks
 from tutor.__about__ import __version_suffix__
 from tutor.types import Config, get_typed
@@ -37,7 +37,7 @@ config: t.Dict[str, t.Dict[str, t.Any]] = {
 
 with open(
     os.path.join(
-        pkg_resources.resource_filename("tutorandroid", "templates"),
+        str(importlib_resources.files("tutorandroid") / "templates"),
         "android",
         "tasks",
         "lms",
@@ -135,7 +135,7 @@ def _print_android_app_public_hosts(
 
 # Add the "templates" folder as a template root
 tutor_hooks.Filters.ENV_TEMPLATE_ROOTS.add_item(
-    pkg_resources.resource_filename("tutorandroid", "templates")
+    str(importlib_resources.files("tutorandroid") / "templates")
 )
 # Render the "build" and "apps" folders
 tutor_hooks.Filters.ENV_TEMPLATE_TARGETS.add_items(
@@ -147,7 +147,7 @@ tutor_hooks.Filters.ENV_TEMPLATE_TARGETS.add_items(
 # Load patches from files
 for path in glob(
     os.path.join(
-        pkg_resources.resource_filename("tutorandroid", "patches"),
+        str(importlib_resources.files("tutorandroid") / "patches"),
         "*",
     )
 ):
