@@ -16,7 +16,6 @@ FROM base AS sdk
 # Install Android SDK
 # Inspired from https://github.com/LiveXP/docker-android-sdk/blob/master/Dockerfile
 # Get sdk version from here: https://developer.android.com/studio#command-tools
-# ENV ANDROID_SDK_VERSION 10406996
 ENV ANDROID_SDK_VERSION 11076708
 ENV ANDROID_SDK_PATH /app/android-sdk
 ENV ANDROID_HOME /app/android-sdk
@@ -58,8 +57,10 @@ RUN ./gradlew tasks
 FROM common as build
 
 # User-customized config
-COPY ./config/edx.properties ./OpenEdXMobile/default_config/edx.properties
-COPY ./config/tutor.yaml ./OpenEdXMobile/default_config/tutor.yaml
+# COPY ./config/edx.properties ./OpenEdXMobile/default_config/edx.properties
+COPY ./config/tutor.yaml ./default_config/dev/config.yaml
+COPY ./config/tutor.yaml ./default_config/stage/config.yaml
+COPY ./config/tutor.yaml ./default_config/prod/config.yaml
 {% if ANDROID_ENABLE_RELEASE_MODE %}
 # Add release settings
 COPY ./config/gradle.properties ./gradle.properties.tutor
