@@ -57,7 +57,6 @@ RUN ./gradlew tasks
 FROM common as build
 
 # User-customized config
-# COPY ./config/edx.properties ./OpenEdXMobile/default_config/edx.properties
 COPY ./config/tutor.yaml ./default_config/dev/config.yaml
 COPY ./config/tutor.yaml ./default_config/stage/config.yaml
 COPY ./config/tutor.yaml ./default_config/prod/config.yaml
