@@ -1,18 +1,83 @@
 # See docs: https://openedx.atlassian.net/wiki/spaces/LEARNER/pages/48792067/App+Configuration+Flags
 API_HOST_URL: "{{ "https" if ENABLE_HTTPS else "http" }}://{{ LMS_HOST }}"
+APPLICATION_ID: 'org.openedx.app'
 ENVIRONMENT_DISPLAY_NAME: "tutor"
-PLATFORM_NAME: "{{ PLATFORM_NAME }}"
-PLATFORM_DESTINATION_NAME: "{{ LMS_HOST }}"
+URI_SCHEME: ''
 FEEDBACK_EMAIL_ADDRESS: "{{ CONTACT_EMAIL }}"
+FAQ_URL: ''
 OAUTH_CLIENT_ID: "android"
 
-COURSE_VIDEOS_ENABLED: true
-CERTIFICATES_ENABLED: true
-DISCUSSIONS_ENABLED: true
+# Keep empty to hide setting
+AGREEMENT_URLS:
+  PRIVACY_POLICY_URL: ''
+  COOKIE_POLICY_URL: ''
+  DATA_SELL_CONSENT_URL: ''
+  TOS_URL: ''
+  EULA_URL: ''
+  SUPPORTED_LANGUAGES: [ ] #en is default language
+
 DISCOVERY:
-  COURSE:
-    TYPE: native
-DOWNLOAD_TO_SD_CARD_ENABLED: true
-NEW_LOGISTRATION_ENABLED: true
-USER_PROFILES_ENABLED : true
-VIDEO_TRANSCRIPT_ENABLED: true
+  TYPE: 'native'
+  WEBVIEW:
+    BASE_URL: ''
+    COURSE_DETAIL_TEMPLATE: ''
+    PROGRAM_DETAIL_TEMPLATE: ''
+
+PROGRAM:
+  TYPE: 'native'
+  WEBVIEW:
+    PROGRAM_URL: ''
+    PROGRAM_DETAIL_URL_TEMPLATE: ''
+
+FIREBASE:
+  ENABLED: false
+  ANALYTICS_SOURCE: '' # segment | none
+  CLOUD_MESSAGING_ENABLED: false
+  PROJECT_NUMBER: ''
+  PROJECT_ID: ''
+  APPLICATION_ID: '' #App ID field from the Firebase console or mobilesdk_app_id from the google-services.json file.
+  API_KEY: ''
+
+SEGMENT_IO:
+  ENABLED: false
+  SEGMENT_IO_WRITE_KEY: ''
+
+BRAZE:
+  ENABLED: false
+  PUSH_NOTIFICATIONS_ENABLED: false
+
+GOOGLE:
+  ENABLED: false
+  CLIENT_ID: ''
+
+MICROSOFT:
+  ENABLED: false
+  CLIENT_ID: ''
+  PACKAGE_SIGNATURE: ''
+
+FACEBOOK:
+  ENABLED: false
+  FACEBOOK_APP_ID: ''
+  CLIENT_TOKEN: ''
+
+BRANCH:
+  ENABLED: false
+  KEY: ''
+  URI_SCHEME: ''
+  HOST: ''
+  ALTERNATE_HOST: ''
+
+#Platform names
+PLATFORM_NAME: "{{ PLATFORM_NAME }}"
+PLATFORM_FULL_NAME: "{{ PLATFORM_NAME }}"
+#App sourceSets dir
+THEME_DIRECTORY: "openedx"
+#tokenType enum accepts JWT and BEARER only
+TOKEN_TYPE: "JWT"
+#feature flag for activating What’s New feature
+WHATS_NEW_ENABLED: false
+#feature flag enable Social Login buttons
+SOCIAL_AUTH_ENABLED: false
+#Course navigation feature flags
+COURSE_NESTED_LIST_ENABLED: false
+COURSE_UNIT_PROGRESS_ENABLED: false
