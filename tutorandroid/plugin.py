@@ -116,9 +116,9 @@ def _build_custom_android_app(
     mounts: list[tuple[str, str]], host_path: str
 ) -> list[tuple[str, str]]:
     path_basename = os.path.basename(host_path)
-    if path_basename == "edx-app-android":
+    if path_basename == "openedx-app-android":
         # Bind-mount repo at build-time
-        mounts.append(("android", "edx-app-android"))
+        mounts.append(("android", "openedx-app-android"))
     return mounts
 
 
