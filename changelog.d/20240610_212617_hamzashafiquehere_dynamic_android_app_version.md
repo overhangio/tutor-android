@@ -1,0 +1,1 @@
+- [Feature] Enhanced `ANDROID_APP_VERSION` logic to dynamically set the version based on `OPENEDX_COMMON_VERSION`: For nightly builds, `ANDROID_APP_VERSION` is set to main. For other builds, `ANDROID_APP_VERSION` is set to the value of `OPENEDX_COMMON_VERSION`. (by @hamza-56)
