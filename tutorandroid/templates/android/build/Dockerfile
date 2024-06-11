@@ -35,8 +35,7 @@ RUN yes | /app/android-sdk/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOM
 FROM base AS code
 # Install android app repo
 ARG ANDROID_APP_REPOSITORY=https://github.com/openedx/openedx-app-android.git
-# Always use the 'main' branch
-ARG ANDROID_APP_VERSION=main
+ARG ANDROID_APP_VERSION={% if OPENEDX_COMMON_VERSION == "master" %}main{% else %}{{ OPENEDX_COMMON_VERSION }}{% endif %}
 ADD --keep-git-dir $ANDROID_APP_REPOSITORY#$ANDROID_APP_VERSION /app/openedx-app-android
 
 ###### Empty layer to mount custom repo at build time
