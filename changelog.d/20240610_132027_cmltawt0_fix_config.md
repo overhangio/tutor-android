@@ -1,0 +1,1 @@
+- [Feature] Update the tutor.yaml configuration to align with the new app’s default settings. See the default configuration here: [default_config/prod/config.yaml](https://github.com/openedx/openedx-app-android/blob/main/default_config/prod/config.yaml) (by @cmltawt0).
