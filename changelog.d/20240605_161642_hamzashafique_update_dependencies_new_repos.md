@@ -1,1 +1,0 @@
-- [Feature] Upgrade the deprecated [edx-app-android](https://github.com/openedx-unsupported/edx-app-android) to [openedx-app-android](https://github.com/openedx/openedx-app-android). (by @hamza-56)
