@@ -23,16 +23,16 @@ The ``.apk`` file will then be available for download at http(s)://mobile.LMS_HO
 Building a custom Android app
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The Android app is built from the `official edx-app-android repository <https://github.com/edx/edx-app-android/>`__. To change this repository or the app version, you can simply build a different docker image with::
+The Android app is built from the `official openedx-app-android repository <https://github.com/openedx/openedx-app-android/>`__. To change this repository or the app version, you can simply build a different docker image with::
 
     tutor images build \
-        --build-arg ANDROID_APP_REPOSITORY=https://github.com/mycustomfork/edx-app-android \
+        --build-arg ANDROID_APP_REPOSITORY=https://github.com/mycustomfork/openedx-app-android \
         --build-arg ANDROID_APP_VERSION=master \
         android
 
-Alternatively, you can build an image from a local checked-out fork of edx-app-android::
+Alternatively, you can build an image from a local checked-out fork of openedx-app-android::
 
-    tutor mounts add /path/to/edx-app-android
+    tutor mounts add /path/to/openedx-app-android
     tutor local launch
 
 Making courses visible in app
