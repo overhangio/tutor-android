@@ -16,9 +16,9 @@ FROM base AS sdk
 # Install Android SDK
 # Inspired from https://github.com/LiveXP/docker-android-sdk/blob/master/Dockerfile
 # Get sdk version from here: https://developer.android.com/studio#command-tools
-ENV ANDROID_SDK_VERSION 11076708
-ENV ANDROID_SDK_PATH /app/android-sdk
-ENV ANDROID_HOME /app/android-sdk
+ENV ANDROID_SDK_VERSION=11076708
+ENV ANDROID_SDK_PATH=/app/android-sdk
+ENV ANDROID_HOME=/app/android-sdk
 RUN mkdir ${ANDROID_HOME}
 WORKDIR /app/android-sdk
 RUN wget --quiet https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_SDK_VERSION}_latest.zip && \
@@ -53,7 +53,7 @@ RUN ./gradlew -v
 RUN ./gradlew tasks
 
 ###### Build image with app-specific settings
-FROM common as build
+FROM common AS build
 
 # User-customized config
 COPY ./config/tutor.yaml ./default_config/dev/config.yaml
@@ -72,6 +72,6 @@ RUN ./gradlew assembleProd{{ "Release" if ANDROID_ENABLE_RELEASE_MODE else "Debu
 
 #### File server to serve apk file
 # https://hub.docker.com/_/caddy?tab=tags
-FROM docker.io/caddy:2.6.4-alpine as production
+FROM docker.io/caddy:2.6.4-alpine AS production
 COPY --from=build /app/openedx-app-android/app/build/outputs/apk/prod/{{ "release" if ANDROID_ENABLE_RELEASE_MODE else "debug" }}/app-prod-{{ "release" if ANDROID_ENABLE_RELEASE_MODE else "debug" }}.apk /srv/app.apk
 CMD caddy file-server --listen=:8000 --root=/srv
