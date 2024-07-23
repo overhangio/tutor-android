@@ -40,6 +40,7 @@ setup(
     maintainer_email="regis@overhang.io",
     description="Android mobile app plugin for Tutor",
     long_description=load_readme(),
+    long_description_content_type="text/x-rst",
     packages=find_packages(exclude=["tests*"]),
     include_package_data=True,
     python_requires=">=3.8",
