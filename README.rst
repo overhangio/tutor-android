@@ -18,7 +18,7 @@ Enable the plugin and start the platform::
     tutor plugins enable android
     tutor local launch
 
-The ``.apk`` file will then be available for download at http(s)://mobile.LMS_HOST/app.apk. When running locally, this will be: http://mobile.local.edly.io/app.apk. You can forward this address to your students for download.
+The ``.apk`` file will then be available for download at http(s)://mobile.LMS_HOST/app.apk. When running locally, this will be: http://mobile.local.openedx.io/app.apk. You can forward this address to your students for download.
 
 Building a custom Android app
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
