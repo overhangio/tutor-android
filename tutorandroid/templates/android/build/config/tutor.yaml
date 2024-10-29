@@ -68,7 +68,12 @@ BRANCH:
   ALTERNATE_HOST: ''
 
 #Platform names
-PLATFORM_NAME: "{{ PLATFORM_NAME }}"
+#TODO: Remove the hardcoded value below and replace it with PLATFORM_NAME: "{{ PLATFORM_NAME }}" 
+#once the PR (https://github.com/openedx/openedx-app-android/pull/335) is merged into the master branch.
+#Note: The PR is currently merged into the develop branch.
+
+#Temporary Hardcoded Value
+PLATFORM_NAME: "OpenEdX"
 PLATFORM_FULL_NAME: "{{ PLATFORM_NAME }}"
 #App sourceSets dir
 THEME_DIRECTORY: "openedx"
