@@ -68,8 +68,10 @@ BRANCH:
   ALTERNATE_HOST: ''
 
 #Platform names
-PLATFORM_NAME: "{{ PLATFORM_NAME }}" 
-PLATFORM_NAME: "OpenEdX"
+# TODO: Temporarily set PLATFORM_NAME based on OPENEDX_COMMON_VERSION to 'OpenEdx' for compatibility with the Android app theme directory
+# (https://github.com/openedx/openedx-app-android expects 'OpenEdx'). This is addressed in PR https://github.com/openedx/openedx-app-android/pull/335,
+# which is merged into sumac.master and develop. Revert to "PLATFORM_NAME: '{{ PLATFORM_NAME }}'" once the pr changes are merged in master.
+PLATFORM_NAME: "{% if OPENEDX_COMMON_VERSION == 'master' %}OpenEdx{% else %}{{ PLATFORM_NAME }}{% endif %}"
 PLATFORM_FULL_NAME: "{{ PLATFORM_NAME }}"
 #App sourceSets dir
 THEME_DIRECTORY: "openedx"
