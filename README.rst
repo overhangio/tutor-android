@@ -71,4 +71,4 @@ This Tutor plugin is maintained by Muhammad Ali from `Edly <https://edly.io>`__.
 License
 -------
 
-This software is licensed under the terms of the AGPLv3.
+This work is licensed under the terms of the `GNU Affero General Public License (AGPL) <https://github.com/overhangio/tutor-android/blob/release/LICENSE.txt>`_.
