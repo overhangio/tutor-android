@@ -68,7 +68,7 @@ BRANCH:
   ALTERNATE_HOST: ''
 
 #Platform names
-PLATFORM_NAME: "{{ PLATFORM_NAME }}"
+PLATFORM_NAME: "{{ PLATFORM_NAME }}" 
 PLATFORM_FULL_NAME: "{{ PLATFORM_NAME }}"
 #App sourceSets dir
 THEME_DIRECTORY: "openedx"
