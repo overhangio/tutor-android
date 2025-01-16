@@ -37,7 +37,7 @@ setup(
     author="Edly",
     author_email="hello@edly.io",
     maintainer="Edly",
-    maintainer_email="muhammad.ali@arbisoft.com",
+    maintainer_email="abdul.muqadim@arbisoft.com",
     description="Android mobile app plugin for Tutor",
     long_description=load_readme(),
     long_description_content_type="text/x-rst",
