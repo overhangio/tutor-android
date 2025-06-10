@@ -20,7 +20,7 @@ instructions, because git commits are used to generate release notes:
 <!-- scriv-insert-here -->
 
 <a id='changelog-20.0.0'></a>
-## v20.0.0 (2025-04-06)
+## v20.0.0 (2025-06-10)
 
 - [Improvement] Migrate packaging from setup.py/setuptools to pyproject.toml/hatch. (by @Abdul-Muqadim-Arbisoft)
   - For more details view tutor core PR: https://github.com/overhangio/tutor/pull/1163
