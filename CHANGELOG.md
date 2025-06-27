@@ -19,6 +19,16 @@ instructions, because git commits are used to generate release notes:
 
 <!-- scriv-insert-here -->
 
+<a id='changelog-20.0.0'></a>
+## v20.0.0 (2025-06-10)
+
+- [Improvement] Migrate packaging from setup.py/setuptools to pyproject.toml/hatch. (by @Abdul-Muqadim-Arbisoft)
+  - For more details view tutor core PR: https://github.com/overhangio/tutor/pull/1163
+
+- [Improvement] Add hatch_build.py in sdist target to fix the installation issues (by @dawoudsheraz)
+
+- 💥[Feature] Upgrade to teak. (by @Abdul-Muqadim-Arbisoft)
+
 <a id='changelog-19.0.0'></a>
 ## v19.0.0 (2024-12-09)
 
