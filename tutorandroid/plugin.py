@@ -23,8 +23,8 @@ config: t.Dict[str, t.Dict[str, t.Any]] = {
         # Version 4.0.0 is not working:
         # https://github.com/overhangio/tutor-android/pull/6#issuecomment-1541510489
         "APP_VERSION": "3.1.4",
-        "DOCKER_IMAGE": "{{ DOCKER_REGISTRY }}overhangio/openedx-android:{{ ANDROID_VERSION }}",
-        "APP_DOCKER_IMAGE": "{{ DOCKER_REGISTRY }}overhangio/openedx-android-app:{{ ANDROID_VERSION }}",
+        "DOCKER_IMAGE": "{{ DOCKER_REGISTRY }}overhangio/openedx-android:{{ ANDROID_VERSION }}",  # noqa: E501
+        "APP_DOCKER_IMAGE": "{{ DOCKER_REGISTRY }}overhangio/openedx-android-app:{{ ANDROID_VERSION }}",  # noqa: E501
         "ENABLE_RELEASE_MODE": False,
         "RELEASE_STORE_PASSWORD": "android store password",
         "RELEASE_KEY_PASSWORD": "android release key password",
