@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM docker.io/ubuntu:24.04 AS base
+FROM --platform=linux/amd64 docker.io/ubuntu:24.04 AS base
 LABEL maintainer="Overhang.IO <contact@overhang.io>"
 
 ENV DEBIAN_FRONTEND=noninteractive
