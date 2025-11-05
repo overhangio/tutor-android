@@ -16,7 +16,7 @@ FROM base AS sdk
 # Install Android SDK
 # Inspired from https://github.com/LiveXP/docker-android-sdk/blob/master/Dockerfile
 # Get sdk version from here: https://developer.android.com/studio#command-tools
-ENV ANDROID_SDK_VERSION=11076708
+ENV ANDROID_SDK_VERSION=13114758
 ENV ANDROID_SDK_PATH=/app/android-sdk
 ENV ANDROID_HOME=/app/android-sdk
 RUN mkdir ${ANDROID_HOME}
@@ -28,7 +28,7 @@ RUN wget --quiet https://dl.google.com/android/repository/commandlinetools-linux
 # Accept licenses
 # https://developer.android.com/studio/command-line/sdkmanager
 # Check target version: https://github.com/edx/edx-app-android/blob/master/constants.gradle
-ARG ANDROID_API_LEVEL=34
+ARG ANDROID_API_LEVEL=36
 RUN yes | /app/android-sdk/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOME} --install "platforms;android-$ANDROID_API_LEVEL" 1> /dev/null
 
 ###### Checkout code
