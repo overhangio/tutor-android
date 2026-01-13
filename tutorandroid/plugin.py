@@ -21,6 +21,7 @@ config: t.Dict[str, t.Dict[str, t.Any]] = {
         "VERSION": __version__,
         "APP_HOST": "mobile.{{ LMS_HOST }}",
         "APP_VERSION": '{% if OPENEDX_COMMON_VERSION == "master" %}main{% else %}{{ OPENEDX_COMMON_VERSION }}{% endif %}',  # noqa: E501
+        "APP_ID": "org.openedx.app",
         "DOCKER_IMAGE": "{{ DOCKER_REGISTRY }}overhangio/openedx-android:{{ ANDROID_VERSION }}",  # noqa: E501
         "APP_DOCKER_IMAGE": "{{ DOCKER_REGISTRY }}overhangio/openedx-android-app:{{ ANDROID_VERSION }}",  # noqa: E501
         "ENABLE_RELEASE_MODE": False,
