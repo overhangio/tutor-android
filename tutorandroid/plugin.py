@@ -20,8 +20,9 @@ config: t.Dict[str, t.Dict[str, t.Any]] = {
     "defaults": {
         "VERSION": __version__,
         "APP_HOST": "mobile.{{ LMS_HOST }}",
-        "APP_VERSION": '{% if OPENEDX_COMMON_VERSION == "master" %}main{% else %}{{ OPENEDX_COMMON_VERSION }}{% endif %}',  # noqa: E501
         "APP_ID": "org.openedx.app",
+        "APP_REPOSITORY": "https://github.com/openedx/openedx-app-android.git",
+        "APP_VERSION": '{% if OPENEDX_COMMON_VERSION == "master" %}main{% else %}{{ OPENEDX_COMMON_VERSION }}{% endif %}',  # noqa: E501
         "DOCKER_IMAGE": "{{ DOCKER_REGISTRY }}overhangio/openedx-android:{{ ANDROID_VERSION }}",  # noqa: E501
         "APP_DOCKER_IMAGE": "{{ DOCKER_REGISTRY }}overhangio/openedx-android-app:{{ ANDROID_VERSION }}",  # noqa: E501
         "ENABLE_RELEASE_MODE": False,
