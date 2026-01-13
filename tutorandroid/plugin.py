@@ -20,9 +20,7 @@ config: t.Dict[str, t.Dict[str, t.Any]] = {
     "defaults": {
         "VERSION": __version__,
         "APP_HOST": "mobile.{{ LMS_HOST }}",
-        # Version 4.0.0 is not working:
-        # https://github.com/overhangio/tutor-android/pull/6#issuecomment-1541510489
-        "APP_VERSION": "3.1.4",
+        "APP_VERSION": '{% if OPENEDX_COMMON_VERSION == "master" %}main{% else %}{{ OPENEDX_COMMON_VERSION }}{% endif %}',  # noqa: E501
         "DOCKER_IMAGE": "{{ DOCKER_REGISTRY }}overhangio/openedx-android:{{ ANDROID_VERSION }}",  # noqa: E501
         "APP_DOCKER_IMAGE": "{{ DOCKER_REGISTRY }}overhangio/openedx-android-app:{{ ANDROID_VERSION }}",  # noqa: E501
         "ENABLE_RELEASE_MODE": False,
