@@ -19,6 +19,18 @@ instructions, because git commits are used to generate release notes:
 
 <!-- scriv-insert-here -->
 
+<a id='changelog-21.0.0'></a>
+## v21.0.0 (2025-11-10)
+
+- [Improvement] Migrate from pylint and black to ruff. (by @Abdul-Muqadim-Arbisoft)
+- [Improvement] Test python package distribution build when running make test. (by @Abdul-Muqadim-Arbisoft)
+
+- [Improvement] Upgraded Android build configuration to use latest SDK and API versions (`ANDROID_API_LEVEL=36`, `ANDROID_SDK_VERSION=13114758`) to ensure compatibility with the latest Android tools. (by @Abdul-Muqadim-Arbisoft)
+
+- [Bugfix] Fix Android build on Apple Silicon by forcing the base Docker image to use `linux/amd64`, ensuring Android SDK and Gradle tools run correctly across all platforms. (by @Abdul-Muqadim-Arbisoft)
+
+- 💥[Feature] Upgrade to Ulmo. (by @Abdul-Muqadim-Arbisoft)
+
 <a id='changelog-20.0.0'></a>
 ## v20.0.0 (2025-06-10)
 
