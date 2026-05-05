@@ -80,7 +80,7 @@ Customising the application, such as the logo or the background image, is curren
 If you are interested by this feature, please tell us about it in the Tutor `discussion forums <https://discuss.overhang.io>`_.
 
 Customising the app configuration (``tutor.yaml``)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The Android app reads its configuration from a ``tutor.yaml`` file rendered at build time.
 All commonly customised fields are exposed as ``ANDROID_*`` Tutor settings, so you can change
