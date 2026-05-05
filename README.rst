@@ -79,6 +79,53 @@ Customising the Android app
 Customising the application, such as the logo or the background image, is currently not supported.
 If you are interested by this feature, please tell us about it in the Tutor `discussion forums <https://discuss.overhang.io>`_.
 
+Customising the app configuration (``tutor.yaml``)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The Android app reads its configuration from a ``tutor.yaml`` file rendered at build time.
+All commonly customised fields are exposed as ``ANDROID_*`` Tutor settings, so you can change
+them with ``tutor config save --set <KEY>=<VALUE>``. For example, to enable Firebase:
+
+.. code-block:: bash
+
+    tutor config save \
+      --set ANDROID_FIREBASE_ENABLED=true \
+      --set ANDROID_FIREBASE_PROJECT_ID=my-project \
+      --set ANDROID_FIREBASE_API_KEY=AIzaSy...
+
+The available settings include ``ANDROID_ENVIRONMENT_DISPLAY_NAME``, ``ANDROID_URI_SCHEME``,
+``ANDROID_FAQ_URL``, ``ANDROID_OAUTH_CLIENT_ID``, ``ANDROID_PLATFORM_FULL_NAME``,
+``ANDROID_THEME_DIRECTORY``, ``ANDROID_TOKEN_TYPE``, the agreement URLs
+(``ANDROID_PRIVACY_POLICY_URL``, ``ANDROID_COOKIE_POLICY_URL``, ``ANDROID_DATA_SELL_CONSENT_URL``,
+``ANDROID_TOS_URL``, ``ANDROID_EULA_URL``), ``ANDROID_SUPPORTED_LANGUAGES``, the
+``ANDROID_DISCOVERY_*`` and ``ANDROID_PROGRAM_*`` groups, ``ANDROID_FIREBASE_*``,
+``ANDROID_SEGMENT_IO_*``, ``ANDROID_BRAZE_*``, ``ANDROID_GOOGLE_*``, ``ANDROID_MICROSOFT_*``,
+``ANDROID_FACEBOOK_*``, ``ANDROID_BRANCH_*``, and the feature flags
+``ANDROID_WHATS_NEW_ENABLED``, ``ANDROID_SOCIAL_AUTH_ENABLED``,
+``ANDROID_COURSE_NESTED_LIST_ENABLED`` and ``ANDROID_COURSE_UNIT_PROGRESS_ENABLED``.
+
+For settings that are not exposed as Tutor variables, your own Tutor plugin can append YAML
+to ``tutor.yaml`` via the ``android-tutor-yaml`` patch:
+
+.. code-block:: python
+
+    from tutor import hooks
+
+    hooks.Filters.ENV_PATCHES.add_item((
+        "android-tutor-yaml",
+        "MY_CUSTOM_KEY: my-value\n",
+    ))
+
+The Open edX Android app uses SnakeYAML, which keeps the last value when a key is duplicated.
+That means a top-level key written by the patch will **replace** the value emitted earlier in
+the file, so use ``ANDROID_*`` settings for partial tweaks within a group (for example
+``ANDROID_FIREBASE_ENABLED``) and reserve the patch for adding new keys or for wholesale
+replacement of an entire group.
+
+If neither approach is sufficient, you can replace the rendered ``tutor.yaml`` outright by
+editing ``$(tutor config printroot)/env/plugins/android/build/config/tutor.yaml`` before
+running ``tutor images build android-app``.
+
 Troubleshooting
 ---------------
 
