@@ -29,6 +29,66 @@ config: t.Dict[str, t.Dict[str, t.Any]] = {
         "RELEASE_STORE_PASSWORD": "android store password",
         "RELEASE_KEY_PASSWORD": "android release key password",
         "RELEASE_KEY_ALIAS": "android release key alias",
+        # tutor.yaml: top-level app settings
+        "ENVIRONMENT_DISPLAY_NAME": "tutor",
+        "URI_SCHEME": "",
+        "FAQ_URL": "",
+        "OAUTH_CLIENT_ID": "android",
+        "PLATFORM_FULL_NAME": "{{ PLATFORM_NAME }}",
+        "THEME_DIRECTORY": "openedx",
+        "TOKEN_TYPE": "JWT",
+        # Agreement URLs (leave empty to hide the corresponding setting)
+        "PRIVACY_POLICY_URL": "",
+        "COOKIE_POLICY_URL": "",
+        "DATA_SELL_CONSENT_URL": "",
+        "TOS_URL": "",
+        "EULA_URL": "",
+        "SUPPORTED_LANGUAGES": [],
+        # Discovery
+        "DISCOVERY_TYPE": "native",
+        "DISCOVERY_WEBVIEW_BASE_URL": "",
+        "DISCOVERY_WEBVIEW_COURSE_DETAIL_TEMPLATE": "",
+        "DISCOVERY_WEBVIEW_PROGRAM_DETAIL_TEMPLATE": "",
+        # Program
+        "PROGRAM_TYPE": "native",
+        "PROGRAM_WEBVIEW_PROGRAM_URL": "",
+        "PROGRAM_WEBVIEW_PROGRAM_DETAIL_URL_TEMPLATE": "",
+        # Firebase
+        "FIREBASE_ENABLED": False,
+        "FIREBASE_ANALYTICS_SOURCE": "",
+        "FIREBASE_CLOUD_MESSAGING_ENABLED": False,
+        "FIREBASE_PROJECT_NUMBER": "",
+        "FIREBASE_PROJECT_ID": "",
+        "FIREBASE_APPLICATION_ID": "",
+        "FIREBASE_API_KEY": "",
+        # Segment.io
+        "SEGMENT_IO_ENABLED": False,
+        "SEGMENT_IO_WRITE_KEY": "",
+        # Braze
+        "BRAZE_ENABLED": False,
+        "BRAZE_PUSH_NOTIFICATIONS_ENABLED": False,
+        # Social: Google
+        "GOOGLE_ENABLED": False,
+        "GOOGLE_CLIENT_ID": "",
+        # Social: Microsoft
+        "MICROSOFT_ENABLED": False,
+        "MICROSOFT_CLIENT_ID": "",
+        "MICROSOFT_PACKAGE_SIGNATURE": "",
+        # Social: Facebook
+        "FACEBOOK_ENABLED": False,
+        "FACEBOOK_APP_ID": "",
+        "FACEBOOK_CLIENT_TOKEN": "",
+        # Branch
+        "BRANCH_ENABLED": False,
+        "BRANCH_KEY": "",
+        "BRANCH_URI_SCHEME": "",
+        "BRANCH_HOST": "",
+        "BRANCH_ALTERNATE_HOST": "",
+        # Feature flags
+        "WHATS_NEW_ENABLED": False,
+        "SOCIAL_AUTH_ENABLED": False,
+        "COURSE_NESTED_LIST_ENABLED": False,
+        "COURSE_UNIT_PROGRESS_ENABLED": False,
     },
     "unique": {
         "OAUTH2_SECRET": "{{ 24|random_string }}",
