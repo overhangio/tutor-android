@@ -19,6 +19,16 @@ instructions, because git commits are used to generate release notes:
 
 <!-- scriv-insert-here -->
 
+<a id='changelog-21.0.1'></a>
+## v21.0.1 (2026-08-04)
+
+- [Improvement] `ANDROID_APP_VERSION` and `ANDROID_APP_REPOSITORY` values now set correctly in `Dockerfile` (by @CodeWithEmad)
+- [Feature] `ANDROID_APP_ID` introduced to set the `APPLICATION_ID` inside `tutor.yaml` (by @CodeWithEmad)
+
+- [Chore] Remove unnecessary hatch definition for version. (by @Abdul-Muqadim-Arbisoft)
+
+- [Feature] Make the Android app's `tutor.yaml` fully customisable from Tutor config (#48). All commonly tweaked fields (Firebase, Segment, Braze, Google, Microsoft, Facebook, Branch, agreement URLs, discovery/program settings, feature flags, etc.) are now exposed as `ANDROID_*` settings, and a new `android-tutor-yaml` patch lets plugins append or override any value in the rendered file. (by @Abdul-Muqadim-Arbisoft)
+
 <a id='changelog-21.0.0'></a>
 ## v21.0.0 (2025-11-10)
 
