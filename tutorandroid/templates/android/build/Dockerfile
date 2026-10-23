@@ -6,7 +6,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     --mount=type=cache,target=/var/lib/apt,sharing=locked apt update && \
     apt upgrade -y && \
-    apt install -y wget unzip git openjdk-17-jre openjdk-17-jdk
+    apt install -y ca-certificates wget unzip git openjdk-17-jre openjdk-17-jdk
 
 RUN mkdir /app
 
@@ -72,6 +72,6 @@ RUN ./gradlew assembleProd{{ "Release" if ANDROID_ENABLE_RELEASE_MODE else "Debu
 
 #### File server to serve apk file
 # https://hub.docker.com/_/caddy?tab=tags
-FROM docker.io/caddy:2.6.4-alpine AS production
+FROM docker.io/caddy:2.11.7-alpine AS production
 COPY --from=build /app/openedx-app-android/app/build/outputs/apk/prod/{{ "release" if ANDROID_ENABLE_RELEASE_MODE else "debug" }}/app-prod-{{ "release" if ANDROID_ENABLE_RELEASE_MODE else "debug" }}.apk /srv/app.apk
 CMD caddy file-server --listen=:8000 --root=/srv
