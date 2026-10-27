@@ -19,6 +19,11 @@ instructions, because git commits are used to generate release notes:
 
 <!-- scriv-insert-here -->
 
+<a id='changelog-20.0.1'></a>
+## v20.0.1 (2026-10-27)
+
+- [Security] Upgrade Caddy in the Android image to stop trusting the compromised eMudhra/emSign CA certificates. See https://github.com/overhangio/tutor/issues/1515. (by @ahmed-arb)
+
 <a id='changelog-20.0.0'></a>
 ## v20.0.0 (2025-06-10)
 
